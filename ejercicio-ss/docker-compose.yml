@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+    todo:
+        image: bryanduran/jdk8
+        networks:
+            - microservicios
+        ports:
+            - 8080:8080
+        environment:
+            MYSQL_HOST: db
+        volumes: 
+            - ./app:/app
+        command: ["java", "-jar", "/app/tareas-0.0.1-SNAPSHOT.jar"]
+        links:
+            - db
+        depends_on:
+            - db
+    db:
+        image: mariadb
+        networks:
+            - microservicios
+        environment: 
+            MARIADB_ROOT_PASSWORD: 123456
+        volumes:
+            - ./scripts:/docker-entrypoint-initdb.d
+            - ./datos:/var/lib/mysql
+networks:
+    microservicios:

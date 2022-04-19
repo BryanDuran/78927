@@ -1,9 +1,0 @@
-CREATE DATABASE IF NOT EXISTS ejercicio_ss;
-
-USE ejercicio_ss;
-
-CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY '445566';
-
-GRANT ALL PRIVILEGES ON ejercicio_ss.* TO 'admin'@'%';
-
-FLUSH PRIVILEGES;
